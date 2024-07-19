@@ -1,0 +1,2 @@
+pandas
+sqllite3
