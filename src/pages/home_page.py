@@ -3,6 +3,8 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from src.pages.add_new_project import open_new_project_page
+from src.logger import logging
+from src.exception import CustomException
 
 def main(page: ft.Page):
     # Set the title of the web page

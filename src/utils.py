@@ -9,7 +9,7 @@ from src.logger import logging
 from src.exception import CustomException
 
 class DatabaseExecutions:
-    def __init__(self,dbname):
+    def __init__(self,dbname="database/MLPipeline"):
         self.conn=sqlite3.connect(dbname)
         self.cursor=self.conn.cursor()
     # def create_db_connector(dbname):
@@ -27,7 +27,7 @@ class DatabaseExecutions:
     def get_columns(self,table_name):
         return [rows[1] for rows in self.cursor.execute(f'''PRAGMA table_info({table_name})''')]
         
-    def execute_query(self,query,table_name):
+    def execute_query(self,query):
         try:
             self.cursor.execute(query)
             rows = self.cursor.fetchall()
