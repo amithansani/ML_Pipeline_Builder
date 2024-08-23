@@ -9,7 +9,8 @@ from src.logger import logging
 from src.exception import CustomException
 
 class DatabaseExecutions:
-    def __init__(self,dbname="database/MLPipeline"):
+    def __init__(self,dbname="database/MLPipeline.db"):
+        print("db executions")
         self.conn=sqlite3.connect(dbname)
         self.cursor=self.conn.cursor()
     # def create_db_connector(dbname):
@@ -19,10 +20,13 @@ class DatabaseExecutions:
 
     def execute_ddl_dml(self,query):
         try:
+            print("execution query")
             self.cursor.execute(query)
             self.conn.commit()
             return True
         except Exception as e:
+            logging.error(e)
+            print(e)
             CustomException(e,sys)
     def get_columns(self,table_name):
         return [rows[1] for rows in self.cursor.execute(f'''PRAGMA table_info({table_name})''')]

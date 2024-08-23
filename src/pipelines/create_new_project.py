@@ -19,8 +19,8 @@ def create_new_project_pipeline(project_name,description,problem_statement,envir
         prj.insert_project_db()
         logging.info("Project insterted in DB")
         
-        prj.create_structure()
-        logging.info("Structure Created")
+        # prj.create_structure()
+        # logging.info("Structure Created")
 
     except Exception as e:
         CustomException(e,sys)
@@ -28,3 +28,4 @@ def create_new_project_pipeline(project_name,description,problem_statement,envir
 
 
 
+create_new_project_pipeline("t11","t11","problem","enc","dfd","fdd/fd")

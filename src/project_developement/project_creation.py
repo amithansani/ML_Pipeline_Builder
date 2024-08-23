@@ -27,14 +27,23 @@ class DevelopNewProject:
         
 
     def insert_project_db(self):
-        db=DatabaseExecutions()
-        
-        query=f'''
-            insert into PROJECT(proj_name,description,problem_statement,environment,version,project_path) VALUES('{self.project_name}','{self.description}','{self.problem_statement}','{self.environment}','{self.version}','{self.project_path}')
-        '''
-        print(query)
-        print(db.execute_ddl_dml(query=query))
-        db.close_connection
+        try:
+            print("insert project")
+            db=DatabaseExecutions() 
+            print("db connected")
+            logging.info("DB Connection Successful")   
+            query=f'''
+                insert into PROJECT(proj_name,description,problem_statement,environment,version,project_path) VALUES('{self.project_name}','{self.description}','{self.problem_statement}','{self.environment}','{self.version}','{self.project_path}')
+            '''
+            print(type(db))
+            db.execute_ddl_dml(query)
+            # print("query executed")
+            logging.info("Query Execution Successful")
+            db.close_connection
+            logging.info("DB Connection Closed")
+        except Exception as e:
+            print(e)
+            logging.ERROR(e)
     
     def create_structure(self):
         #create project structure
